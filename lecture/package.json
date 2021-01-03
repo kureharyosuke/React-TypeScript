@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack"
+    "dev": "webpack"
   },
   "author": "Kureha",
   "license": "MIT",
