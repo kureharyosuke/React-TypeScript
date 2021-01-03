@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./GuGuDanClass.tsx":
-/*!**************************!*\
-  !*** ./GuGuDanClass.tsx ***!
-  \**************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ "./WordRelayHook.tsx":
+/*!***************************!*\
+  !*** ./WordRelayHook.tsx ***!
+  \***************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nvar __extends = (this && this.__extends) || (function () {\n    var extendStatics = function (d, b) {\n        extendStatics = Object.setPrototypeOf ||\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\n            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };\n        return extendStatics(d, b);\n    };\n    return function (d, b) {\n        extendStatics(d, b);\n        function __() { this.constructor = d; }\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n    };\n})();\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar GuGuDanClass = /** @class */ (function (_super) {\n    __extends(GuGuDanClass, _super);\n    function GuGuDanClass() {\n        var _this = _super !== null && _super.apply(this, arguments) || this;\n        _this.state = {\n            first: Math.ceil(Math.random() * 9),\n            second: Math.ceil(Math.random() * 9),\n            value: \"\",\n            result: \"\"\n        };\n        _this.onSubmit = function (e) {\n            e.preventDefault();\n            if (parseInt(_this.state.value) === _this.state.first * _this.state.second) {\n                _this.setState(function (prevState) {\n                    return {\n                        result: \"Good: \" + prevState.value,\n                        first: Math.ceil(Math.random() * 9),\n                        second: Math.ceil(Math.random() * 9),\n                        value: \"\"\n                    };\n                });\n                if (_this.input) {\n                    _this.input.focus();\n                }\n            }\n            else {\n                _this.setState({\n                    result: \"No!\",\n                    value: \"\"\n                });\n                if (_this.input) {\n                    _this.input.focus();\n                }\n            }\n        };\n        _this.onChange = function (e) {\n            _this.setState({ value: e.target.value });\n        };\n        _this.input = null;\n        _this.onRefInput = function (c) {\n            _this.input = c;\n        };\n        return _this;\n    }\n    GuGuDanClass.prototype.render = function () {\n        return (React.createElement(React.Fragment, null,\n            React.createElement(\"div\", null,\n                this.state.first,\n                \" X \",\n                this.state.second),\n            React.createElement(\"form\", { onSubmit: this.onSubmit },\n                React.createElement(\"input\", { ref: this.onRefInput, type: \"number\", value: this.state.value, onChange: this.onChange }),\n                React.createElement(\"button\", null, \"Button\")),\n            React.createElement(\"div\", null, this.state.result)));\n    };\n    return GuGuDanClass;\n}(react_1.Component));\nexports.default = GuGuDanClass;\n\n\n//# sourceURL=webpack://lecture/./GuGuDanClass.tsx?");
+eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar WordRelayHook = function () {\n    var _a = react_1.useState(\"바나나\"), word = _a[0], setWord = _a[1];\n    var _b = react_1.useState(\"\"), value = _b[0], setValue = _b[1];\n    var _c = react_1.useState(\"\"), result = _c[0], setResult = _c[1];\n    var inputRef = react_1.useRef(null);\n    var onSubmitForm = react_1.useCallback(function (e) {\n        e.preventDefault();\n        var input = inputRef.current;\n        if (word[word.length - 1] === value[0]) {\n            setResult(\"Good\");\n            setWord(value);\n            setValue(\"\");\n            if (input) {\n                input.focus();\n            }\n        }\n        else {\n            setResult(\"No\");\n            setValue(\"\");\n            if (input) {\n                input.focus();\n            }\n        }\n    }, [word, value]);\n    var onChange = react_1.useCallback(function (e) {\n        setValue(e.currentTarget.value);\n    }, []);\n    return (React.createElement(React.Fragment, null,\n        React.createElement(\"div\", null, word),\n        React.createElement(\"form\", { onSubmit: onSubmitForm },\n            React.createElement(\"input\", { ref: inputRef, value: value, onChange: onChange }),\n            React.createElement(\"button\", null, \"Button\")),\n        React.createElement(\"div\", null, result)));\n};\nexports.default = WordRelayHook;\n\n\n//# sourceURL=webpack://lecture/./WordRelayHook.tsx?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("\nvar __extends = (this && this.__extends) || (function () {\n    var exte
   \********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar GuGuDanClass_1 = __webpack_require__(/*! ./GuGuDanClass */ \"./GuGuDanClass.tsx\");\nReactDOM.render(React.createElement(GuGuDanClass_1[\"default\"], null), document.querySelector(\"#root\"));\n\n\n//# sourceURL=webpack://lecture/./client.tsx?");
+eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar react_hot_loader_1 = __webpack_require__(/*! react-hot-loader */ \"./node_modules/react-hot-loader/index.js\");\n// import GuGuDanClass from \"./GuGuDanClass\";\n// import GuGuDanHook from \"./GuGuDanHook\";\nvar WordRelayHook_1 = __webpack_require__(/*! ./WordRelayHook */ \"./WordRelayHook.tsx\");\nvar Hot = react_hot_loader_1.hot(WordRelayHook_1[\"default\"]);\nReactDOM.render(React.createElement(WordRelayHook_1[\"default\"], null), document.querySelector(\"#root\"));\n\n\n//# sourceURL=webpack://lecture/./client.tsx?");
 
 /***/ }),
 
@@ -57,6 +57,26 @@ eval("/** @license React v17.0.1\n * react-dom.development.js\n *\n * Copyright 
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 eval("\n\nfunction checkDCE() {\n  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */\n  if (\n    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||\n    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'\n  ) {\n    return;\n  }\n  if (true) {\n    // This branch is unreachable because this function is only called\n    // in production, but the condition is true only in development.\n    // Therefore if the branch is still here, dead code elimination wasn't\n    // properly applied.\n    // Don't change the message. React DevTools relies on it. Also make sure\n    // this message doesn't occur elsewhere in this function, or it will cause\n    // a false positive.\n    throw new Error('^_^');\n  }\n  try {\n    // Verify that the code above has been dead code eliminated (DCE'd).\n    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);\n  } catch (err) {\n    // DevTools shouldn't crash React, no matter what.\n    // We should still report in case we break this code.\n    console.error(err);\n  }\n}\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs/react-dom.development.js */ \"./node_modules/react-dom/cjs/react-dom.development.js\");\n}\n\n\n//# sourceURL=webpack://lecture/./node_modules/react-dom/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/react-hot-loader/dist/react-hot-loader.production.min.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/react-hot-loader/dist/react-hot-loader.production.min.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+eval("function _interopDefault(e){return e&&\"object\"==typeof e&&\"default\"in e?e.default:e}Object.defineProperty(exports, \"__esModule\", ({value:!0}));var React=_interopDefault(__webpack_require__(/*! react */ \"./node_modules/react/index.js\"));function AppContainer(e){return AppContainer.warnAboutHMRDisabled&&(AppContainer.warnAboutHMRDisabled=!0,console.error(\"React-Hot-Loader: misconfiguration detected, using production version in non-production environment.\"),console.error(\"React-Hot-Loader: Hot Module Replacement is not enabled.\")),React.Children.only(e.children)}AppContainer.warnAboutHMRDisabled=!1;var hot=function e(){return e.shouldWrapWithAppContainer?function(e){return function(n){return React.createElement(AppContainer,null,React.createElement(e,n))}}:function(e){return e}};hot.shouldWrapWithAppContainer=!1;var areComponentsEqual=function(e,n){return e===n},setConfig=function(){},cold=function(e){return e},configureComponent=function(){};exports.AppContainer=AppContainer,exports.hot=hot,exports.areComponentsEqual=areComponentsEqual,exports.setConfig=setConfig,exports.cold=cold,exports.configureComponent=configureComponent;\n\n\n//# sourceURL=webpack://lecture/./node_modules/react-hot-loader/dist/react-hot-loader.production.min.js?");
+
+/***/ }),
+
+/***/ "./node_modules/react-hot-loader/index.js":
+/*!************************************************!*\
+  !*** ./node_modules/react-hot-loader/index.js ***!
+  \************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("\n\nif (false) {} else if (false) {} else if (typeof window === 'undefined') {\n  // this is just server environment\n  module.exports = __webpack_require__(/*! ./dist/react-hot-loader.production.min.js */ \"./node_modules/react-hot-loader/dist/react-hot-loader.production.min.js\");\n} else if (true) {\n  module.exports = __webpack_require__(/*! ./dist/react-hot-loader.production.min.js */ \"./node_modules/react-hot-loader/dist/react-hot-loader.production.min.js\");\n  module.exports.AppContainer.warnAboutHMRDisabled = true;\n  module.exports.hot.shouldWrapWithAppContainer = true;\n} else { var jsFeaturesPresent, evalError, evalAllowed; }\n\n\n//# sourceURL=webpack://lecture/./node_modules/react-hot-loader/index.js?");
 
 /***/ }),
 
@@ -139,7 +159,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;

@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
+    "react-hot-loader": "^4.13.0",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
   }
