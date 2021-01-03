@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import GuGuDanClass from "./GuGuDanClass";
 import GuGuDanHook from "./GuGuDanHook";
 
-ReactDOM.render(<GuGuDanHook />, document.querySelector("#root"));
+ReactDOM.render(<GuGuDanClass />, document.querySelector("#root"));

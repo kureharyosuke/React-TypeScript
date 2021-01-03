@@ -3,8 +3,8 @@ import { useState, useRef } from "react";
 
 const GuGuDanHook = () => {
   const [first, setFirst] = useState(Math.ceil(Math.random() * 9)); // = React.useState(Math.ceil(Math.random() * 9));
-  const [second, setSecond] = useState(Math.ceil(Math.random() * 9));
-  const [value, setValue] = useState("");
+  const [second, setSecond] = useState(Math.ceil(Math.random() * 9)); // = useState<number>(Math.ceil(Math.random() * 9));
+  const [value, setValue] = useState(""); // = const [value, setValue] = useState<string>("");
   const [result, setResult] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 

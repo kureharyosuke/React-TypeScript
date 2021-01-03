@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./GuGuDanHook.tsx":
-/*!*************************!*\
-  !*** ./GuGuDanHook.tsx ***!
-  \*************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ "./GuGuDanClass.tsx":
+/*!**************************!*\
+  !*** ./GuGuDanClass.tsx ***!
+  \**************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
-eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar GuGuDanHook = function () {\n    var _a = react_1.useState(Math.ceil(Math.random() * 9)), first = _a[0], setFirst = _a[1]; // = React.useState(Math.ceil(Math.random() * 9));\n    var _b = react_1.useState(Math.ceil(Math.random() * 9)), second = _b[0], setSecond = _b[1];\n    var _c = react_1.useState(\"\"), value = _c[0], setValue = _c[1];\n    var _d = react_1.useState(\"\"), result = _d[0], setResult = _d[1];\n    var inputRef = react_1.useRef(null);\n    var onSubmitForm = function (e) {\n        e.preventDefault();\n        var input = inputRef.current;\n        if (parseInt(value) === first * second) {\n            setResult(\"Good!\");\n            setFirst(Math.ceil(Math.random() * 9));\n            setSecond(Math.ceil(Math.random() * 9));\n            setValue(\"\");\n            if (input) {\n                input.focus();\n            }\n            // input!.focus();\n        }\n        else {\n            setResult(\"No!\");\n            setValue(\"\");\n            if (input) {\n                input.focus();\n            }\n            // input!.focus();\n        }\n    };\n    return (React.createElement(React.Fragment, null,\n        React.createElement(\"div\", null,\n            first,\n            \" x \",\n            second,\n            \" ?\"),\n        React.createElement(\"form\", { onSubmit: onSubmitForm },\n            React.createElement(\"input\", { ref: inputRef, type: \"number\", value: value, onChange: function (e) { return setValue(e.target.value); } }),\n            React.createElement(\"button\", null, \"Button\")),\n        React.createElement(\"div\", null, result)));\n};\nexports.default = GuGuDanHook;\n\n\n//# sourceURL=webpack://lecture/./GuGuDanHook.tsx?");
+eval("\nvar __extends = (this && this.__extends) || (function () {\n    var extendStatics = function (d, b) {\n        extendStatics = Object.setPrototypeOf ||\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\n            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };\n        return extendStatics(d, b);\n    };\n    return function (d, b) {\n        extendStatics(d, b);\n        function __() { this.constructor = d; }\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\n    };\n})();\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar GuGuDanClass = /** @class */ (function (_super) {\n    __extends(GuGuDanClass, _super);\n    function GuGuDanClass() {\n        var _this = _super !== null && _super.apply(this, arguments) || this;\n        _this.state = {\n            first: Math.ceil(Math.random() * 9),\n            second: Math.ceil(Math.random() * 9),\n            value: \"\",\n            result: \"\"\n        };\n        _this.onSubmit = function (e) {\n            e.preventDefault();\n            if (parseInt(_this.state.value) === _this.state.first * _this.state.second) {\n                _this.setState(function (prevState) {\n                    return {\n                        result: \"Good: \" + prevState.value,\n                        first: Math.ceil(Math.random() * 9),\n                        second: Math.ceil(Math.random() * 9),\n                        value: \"\"\n                    };\n                });\n                if (_this.input) {\n                    _this.input.focus();\n                }\n            }\n            else {\n                _this.setState({\n                    result: \"No!\",\n                    value: \"\"\n                });\n                if (_this.input) {\n                    _this.input.focus();\n                }\n            }\n        };\n        _this.onChange = function (e) {\n            _this.setState({ value: e.target.value });\n        };\n        _this.input = null;\n        _this.onRefInput = function (c) {\n            _this.input = c;\n        };\n        return _this;\n    }\n    GuGuDanClass.prototype.render = function () {\n        return (React.createElement(React.Fragment, null,\n            React.createElement(\"div\", null,\n                this.state.first,\n                \" X \",\n                this.state.second),\n            React.createElement(\"form\", { onSubmit: this.onSubmit },\n                React.createElement(\"input\", { ref: this.onRefInput, type: \"number\", value: this.state.value, onChange: this.onChange }),\n                React.createElement(\"button\", null, \"Button\")),\n            React.createElement(\"div\", null, this.state.result)));\n    };\n    return GuGuDanClass;\n}(react_1.Component));\nexports.default = GuGuDanClass;\n\n\n//# sourceURL=webpack://lecture/./GuGuDanClass.tsx?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */
   \********************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar GuGuDanHook_1 = __webpack_require__(/*! ./GuGuDanHook */ \"./GuGuDanHook.tsx\");\nReactDOM.render(React.createElement(GuGuDanHook_1[\"default\"], null), document.querySelector(\"#root\"));\n\n\n//# sourceURL=webpack://lecture/./client.tsx?");
+eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar GuGuDanClass_1 = __webpack_require__(/*! ./GuGuDanClass */ \"./GuGuDanClass.tsx\");\nReactDOM.render(React.createElement(GuGuDanClass_1[\"default\"], null), document.querySelector(\"#root\"));\n\n\n//# sourceURL=webpack://lecture/./client.tsx?");
 
 /***/ }),
 
@@ -139,7 +139,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
