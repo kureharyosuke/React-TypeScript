@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 // import { TryInfo } from './NumBaseballHook'; // V-1
-import { TryInfo } from "./type";
+import { TryInfo } from "./types";
 
 // V-1
 // const Try = {{tryInfo}:{ tryInfo: TryInfo }} => {
@@ -15,7 +15,7 @@ import { TryInfo } from "./type";
 //     )
 // }
 
-const Try: FunctionComponent<{ tryInfo: TryInfo }> = ({ tryInfo }) => {
+const TryHook: FunctionComponent<{ tryInfo: TryInfo }> = ({ tryInfo }) => {
   return (
     <>
       <li>
@@ -26,4 +26,4 @@ const Try: FunctionComponent<{ tryInfo: TryInfo }> = ({ tryInfo }) => {
   );
 };
 
-export default Try;
+export default TryHook;

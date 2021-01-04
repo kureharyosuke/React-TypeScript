@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState, useRef, useCallback } from "react";
-import Try from "./Try";
-import { TryInfo } from "./type"; // type.ts
+import Try from "./TryHook";
+import { TryInfo } from "./types"; // type.ts
 
 const getNumbers = () => {
   const candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
