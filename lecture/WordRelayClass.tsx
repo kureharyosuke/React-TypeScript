@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Component } from "react";
+// import { Component } from "react";
+import { Component, createRef } from "react";
 
 interface State {
   word: string;
@@ -7,7 +8,7 @@ interface State {
   result: string;
 }
 
-class WordRelayClass extends Component {
+class WordRelayClass extends Component<{}, State> {
   state = {
     word: "오럭키",
     value: "",
@@ -16,7 +17,8 @@ class WordRelayClass extends Component {
 
   onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
-    const input = this.input;
+    // const input = this.input;
+    const input = this.onRefInput.current;
     if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
       this.setState({
         result: "Good",
@@ -42,12 +44,12 @@ class WordRelayClass extends Component {
     this.setState({ value: e.currentTarget.value });
   };
 
-  //   onRefInpout = createRef<HTMLInputElement>();  // createRef
+  // input: HTMLInputElement | null = null;
+  // onRefInput = (c: HTMLInputElement) => {
+  //   this.input = c;
+  // };
 
-  input: HTMLInputElement | null = null;
-  onRefInput = (c: HTMLInputElement) => {
-    this.input = c;
-  };
+  onRefInput = createRef<HTMLInputElement>(); // createRef
 
   render() {
     return (
