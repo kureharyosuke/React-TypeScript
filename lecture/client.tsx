@@ -4,9 +4,12 @@ import { hot } from "react-hot-loader";
 
 // import GuGuDanClass from "./GuGuDanClass";
 // import GuGuDanHook from "./GuGuDanHook";
-import WordRelayHook from "./WordRelayHook";
-import WordRelayClass from "./WordRelayClass";
+// import WordRelayHook from "./WordRelayHook";
+// import WordRelayClass from "./WordRelayClass";
 
-const Hot = hot(WordRelayHook);
+import NumBaseballHook from "./NumBaseballHook";
+import NumBaseballClass from "./NumBaseballClass";
 
-ReactDOM.render(<WordRelayHook />, document.querySelector("#root"));
+const Hot = hot(NumBaseballHook);
+
+ReactDOM.render(<NumBaseballHook />, document.querySelector("#root"));

@@ -34,26 +34,14 @@ const NumberBaseBallHook = () => {
   const [tries, setTries] = useState<TryInfo[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const onSubmitForm = useCallback<(e: React.FormEvent) => void>((e) => {
-    e.preventDefault();
-    const input = inputRef.current;
-    if (value === answer.join("")) {
-      setTries((t) => [...t, { try: value, result: "홈런!" }]);
-      setResult("홈런!");
-      alert("게임을 다시 실행합니다.");
-      setValue("");
-      setAnswer(getNumbers());
-      setTries([]);
-      if (input) {
-        input.focus();
-      }
-    } else {
-      const answerArray = value.split("").map((v) => parseInt(v));
-      let strike = 0;
-      let ball = 0;
-      if (tries.length >= 9) {
-        setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(",")}였습니다.`);
-        alert("게임을 다시 시작합니다.");
+  const onSubmitForm = useCallback<(e: React.FormEvent) => void>(
+    (e) => {
+      e.preventDefault();
+      const input = inputRef.current;
+      if (value === answer.join("")) {
+        setTries((t) => [...t, { try: value, result: "홈런!" }]);
+        setResult("홈런!");
+        alert("게임을 다시 실행합니다.");
         setValue("");
         setAnswer(getNumbers());
         setTries([]);
@@ -61,30 +49,49 @@ const NumberBaseBallHook = () => {
           input.focus();
         }
       } else {
-        console.log("답은", answer.join(""));
-        for (let i = 0; i < 4; i += 1) {
-          if (answerArray[i] === answer[i]) {
-            console.log("strike", answerArray[i], answer[i]);
-            strike += 1;
-          } else if (answer.includes(answerArray[i])) {
-            // .includes() = ES2016 (tsconfig.json)
-            console.log("ball", answerArray[i], answer.indexOf(answerArray[i]));
+        const answerArray = value.split("").map((v) => parseInt(v));
+        let strike = 0;
+        let ball = 0;
+        if (tries.length >= 9) {
+          setResult(`10번 넘게 틀려서 실패! 답은 ${answer.join(",")}였습니다.`);
+          alert("게임을 다시 시작합니다.");
+          setValue("");
+          setAnswer(getNumbers());
+          setTries([]);
+          if (input) {
+            input.focus();
+          }
+        } else {
+          console.log("답은", answer.join(""));
+          for (let i = 0; i < 4; i += 1) {
+            if (answerArray[i] === answer[i]) {
+              console.log("strike", answerArray[i], answer[i]);
+              strike += 1;
+            } else if (answer.includes(answerArray[i])) {
+              // .includes() = ES2016 (tsconfig.json)
+              console.log(
+                "ball",
+                answerArray[i],
+                answer.indexOf(answerArray[i])
+              );
+            }
+          }
+          setTries((t) => [
+            ...t,
+            {
+              try: value,
+              result: `${strike} 스트라이크, ${ball} 볼입니다.`,
+            },
+          ]);
+          setValue("");
+          if (input) {
+            input.focus();
           }
         }
-        setTries((t) => [
-          ...t,
-          {
-            try: value,
-            result: `${strike} 스트라이크, ${ball} 볼입니다.`,
-          },
-        ]);
-        setValue("");
-        if (input) {
-          input.focus();
-        }
       }
-    }
-  }, []);
+    },
+    [value, answer]
+  );
 
   return (
     <>
