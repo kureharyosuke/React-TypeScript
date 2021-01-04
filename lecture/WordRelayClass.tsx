@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Component, createRef } from "react";
+import { Component } from "react";
 
 interface State {
   word: string;
@@ -9,13 +9,14 @@ interface State {
 
 class WordRelayClass extends Component {
   state = {
-    word: "제로초",
+    word: "오럭키",
     value: "",
     result: "",
   };
 
   onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
+    const input = this.input;
     if (this.state.word[this.state.word.length - 1] === this.state.value[0]) {
       this.setState({
         result: "Good",
@@ -35,17 +36,18 @@ class WordRelayClass extends Component {
       }
     }
   };
-  input: HTMLInputElement | null = null;
 
-  onChangeInput = (e: React.ChangeEvent<HTMLImageElement>) => {
+  // Miss Error: No!! = <HTMLImageElement>
+  onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ value: e.currentTarget.value });
   };
 
-//   onRefInpout = createRef<HTMLInputElement>();
+  //   onRefInpout = createRef<HTMLInputElement>();  // createRef
 
-    onRefInput = (c: HTMLInputElement) {
-        this.input = c;
-    }
+  input: HTMLInputElement | null = null;
+  onRefInput = (c: HTMLInputElement) => {
+    this.input = c;
+  };
 
   render() {
     return (
