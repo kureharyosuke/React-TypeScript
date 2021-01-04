@@ -15,7 +15,7 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        loader: "awesome-typescript-loader", // "ts-loader"
+        loader: "awesome-typescript-loader", // or : "ts-loader"
       },
     ],
   },

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useCallback, useRef } from "react";
 
 const WordRelayHook = () => {
-  const [word, setWord] = useState("apple");
+  const [word, setWord] = useState<string>("apple");
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
