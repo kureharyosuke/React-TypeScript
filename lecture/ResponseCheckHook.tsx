@@ -52,10 +52,16 @@ const ResponseCheckHook = () => {
 
   return (
     <>
-      <div id="screen" className={state} onClick={onClickScreen}>
+      <div
+        id="screen"
+        className={state}
+        // css
+        onClick={onClickScreen}
+      >
         {message}
       </div>
       {renderAverage()}
+      {/* render function */}
     </>
   );
 };

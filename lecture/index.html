@@ -4,6 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      #screen {
+        width: 300px;
+        height: 200px;
+        text-align: center;
+        user-select: none;
+      }
+      #screen.Waiting {
+        background-color: aqua;
+      }
+      #screen.Ready {
+        background-color: red;
+        color: white;
+      }
+      #screen.Now {
+        background-color: greenyellow;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>
