@@ -18,9 +18,10 @@ class ResponseCheckClass extends Component<{}, State> {
   //   }
 
   state: State = {
+    // Error : 타입추론 result: Array에 빈 배열의 타입추론이 안되서 never 문제에 대한 interface => state: State = {}
     state: "Waiting",
     message: "클릭하시면 시작됩니다.",
-    result: [] as number[],
+    result: [],
   };
 
   // 화면에 영향을 안주는 것은 Ref
@@ -32,7 +33,7 @@ class ResponseCheckClass extends Component<{}, State> {
     const { state } = this.state;
     if (state === "Waiting") {
       this.timeout = window.setTimeout(() => {
-        //
+        // *** .setTimeout 사용할때는 꼭  window. 을 사용 할것! (window? 인지 node?인지 인식이 안될때)
         this.setState({
           state: "Now",
           message: "Click",
@@ -54,12 +55,13 @@ class ResponseCheckClass extends Component<{}, State> {
       });
     } else if (state === "Now") {
       this.endTime = new Date().getTime();
+      // Error1: getTime() = number , entTime = number | null ? 이니까...
       this.setState((prevState) => {
         return {
           state: "Waiting",
           message: "클릭해서 시작하십시오.",
           result: [...prevState.result, this.endTime! - this.startTime!],
-          // ! 또는 if(){}
+          // Error2: ! 또는 if(){}
         };
       });
     }

@@ -5,14 +5,14 @@ const ResponseCheckHook = () => {
   const [state, setState] = useState("Waiting");
   const [message, setMessage] = useState("Click");
   const [result, setResult] = useState<number[]>([]);
-  const timeOut = useRef<number | null>(null); // *** Generic 제너릭 꼭 사용! <number | null>
+  const timeOut = useRef<number | null>(null); // *** Generic 제너릭 꼭 사용! <number | null> ***빈배열의 문제 : never
   const startTime = useRef(0);
   const endTime = useRef(0);
 
   const onClickScreen = useCallback(() => {
     if (state === "Waiting") {
       timeOut.current = window.setTimeout(() => {
-        // *** .setTimeout 사용할때는 꼭  window. 을 사용 할것!
+        // *** .setTimeout 사용할때는 꼭  window. 을 사용 할것! (window? 인지 node?인지 인식이 안될때)
         setState("Now");
         setMessage("지금 클릭");
         startTime.current = new Date().getTime();

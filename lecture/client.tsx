@@ -13,6 +13,6 @@ import { hot } from "react-hot-loader";
 import ResponseCheckHook from "./ResponseCheckHook";
 import ResponseCheckClass from "./ResponseCheckClass";
 
-const Hot = hot(ResponseCheckHook);
+const Hot = hot(ResponseCheckClass);
 
-ReactDOM.render(<ResponseCheckHook />, document.querySelector("#root"));
+ReactDOM.render(<ResponseCheckClass />, document.querySelector("#root"));
