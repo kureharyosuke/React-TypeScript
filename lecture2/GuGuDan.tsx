@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 // <> === React.Fragment 와 동일하다.
 const GuGuDan = () => {
   const [first, setFirst] = useState<number>(Math.ceil(Math.random() * 9))
-  const [second, setSecond] = useState(Math.ceil(Math.random() * 9))
+  const [second, setSecond] = useState<number>(Math.ceil(Math.random() * 9))
   const [value, setValue] = useState('')
   const [result, setResult] = useState('')
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,13 +33,13 @@ const GuGuDan = () => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <div>{first} * {second}</div>
       <form onSubmit={onSubmitForm}>
         <input ref={inputRef} type="number" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
       </form>
       <div>{result}</div>
-    </>
+    </React.Fragment>
   )
 }
 
