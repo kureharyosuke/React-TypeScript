@@ -32,14 +32,15 @@ const GuGuDan = () => {
 
   }
 
+  // <> === React.Fragment 와 동일하다.
   return (
-    <React.Fragment>
+    <>
       <div>{first} * {second}</div>
       <form onSubmit={onSubmitForm}>
         <input ref={inputRef} type="number" value={value} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
       </form>
       <div>{result}</div>
-    </React.Fragment>
+    </>
   )
 }
 
