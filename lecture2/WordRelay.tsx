@@ -2,9 +2,9 @@ import * as React from 'react'
 import { useState, useCallback, useRef } from 'react'
 
 const WordRelay = () => {
-  const [word, setWord] = useState('사과')
-  const [value, setValue] = useState('')
-  const [result, setResult] = useState('')
+  const [word, setWord] = useState<string>('사과')
+  const [value, setValue] = useState<string>('')
+  const [result, setResult] = useState<string>('')
   const inputE1 = useRef<HTMLInputElement>(null);
 
   const onSubmitForm = useCallback<(e: React.FormEvent) => void>((e) => {
@@ -14,17 +14,26 @@ const WordRelay = () => {
       setResult('정답');
       setWord(value);
       setValue('');
-      if (input) {
-        input.focus();
-      }
+
+      // input.focus(); // const input: HTMLInputElement | null =>  Object is possibly 'null'
+
+      // if (input) {
+      //   input.focus();
+      // }
+
+      input && input.focus();
     } else {
       setResult('오답');
       setValue('');
-      if (input) {
-        input.focus();
-      }
+
+      // if (input) {
+      //   input.focus();
+      // }
+
+      input && input.focus();
     }
-  }, [value]) // [value] 꼭 넣어야한다. 오류가 안난다.
+  }, [word, value]) // [value] 꼭 넣어야한다. 오류가 안난다.
+  // useCallback 안에서 쓰이는 state(word, value) 넣어줘야 한다.
 
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
