@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useRef, useState, useCallback } from "react";
-import { setConstantValue } from "typescript";
 import Try from "./Try";
+import { TryInfo } from './types'
 
 const getNumbers = () => {
   const candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -13,12 +13,9 @@ const getNumbers = () => {
   return array;
 }
 
-interface TryInfo {
-  try: string;
-  result: string;
-}
 
-const BassBall = () => {
+
+const NumberBaseBall = () => {
   const [answer, setAnswer] = useState(getNumbers());
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
@@ -118,4 +115,4 @@ const BassBall = () => {
   );
 };
 
-export default BassBall;
+export default NumberBaseBall;

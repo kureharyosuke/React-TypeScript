@@ -108,14 +108,25 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 /***/ }),
 
-/***/ "./WordRelay.tsx":
-/*!***********************!*\
-  !*** ./WordRelay.tsx ***!
-  \***********************/
+/***/ "./NumberBaseBall.tsx":
+/*!****************************!*\
+  !*** ./NumberBaseBall.tsx ***!
+  \****************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __spreadArray = (this && this.__spreadArray) || function (to, from) {\n    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)\n        to[j] = from[i];\n    return to;\n};\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar Try_1 = __webpack_require__(/*! ./Try */ \"./Try.tsx\");\nvar getNumbers = function () {\n    var candidates = [1, 2, 3, 4, 5, 6, 7, 8, 9];\n    var array = [];\n    for (var i = 0; i < 4; i += 1) {\n        var chosen = candidates.splice(Math.floor(Math.random() * (9 - i)), 1)[0];\n        array.push(chosen);\n    }\n    return array;\n};\nvar NumberBaseBall = function () {\n    var _a = react_1.useState(getNumbers()), answer = _a[0], setAnswer = _a[1];\n    var _b = react_1.useState(\"\"), value = _b[0], setValue = _b[1];\n    var _c = react_1.useState(\"\"), result = _c[0], setResult = _c[1];\n    var _d = react_1.useState([]), tries = _d[0], setTries = _d[1];\n    var inputE1 = react_1.useRef(null); // function useRef<T>(initialValue: T | null): RefObject<T>;\n    // 타입\n    // interface RefObject<T> {\n    //   readonly current: T | null;\n    // }\n    var onSubmitForm = react_1.useCallback(function (e) {\n        // (1) 'e' is declared but its value is never read.\n        // useCallback(e를 감싸면, e의 타입이 안잡힌다.) \n        e.preventDefault();\n        var input = inputE1.current;\n        if (value === answer.join('')) {\n            setTries(function (t) { return (__spreadArray(__spreadArray([], t), [\n                {\n                    \"try\": value,\n                    result: '홈런!',\n                }\n            ])); });\n            setResult('홈런');\n            alert('게임을 다시 실행합니다.');\n            setValue('');\n            setAnswer(getNumbers());\n            setTries([]);\n            // if (input) {\n            //   input.focus();\n            // }\n            input && input.focus();\n        }\n        else {\n            var answerArray = value.split('').map(function (v) { return parseInt(v); });\n            var strike_1 = 0;\n            var ball_1 = 0;\n            if (tries.length >= 9) {\n                setResult(\"10\\uBC88 \\uB118\\uAC8C \\uD2C0\\uB824\\uC11C \\uC2E4\\uD328! \\uB2F5\\uC740 \" + answer.join(',') + \"\\uC600\\uC2B5\\uB2C8\\uB2E4.\"); // state set은 비동기\n                alert('게임을 다시 시작합니다.');\n                setValue('');\n                setAnswer(getNumbers());\n                setTries([]);\n            }\n            else {\n                console.log('답은', answer.join(''));\n                for (var i = 0; i < 4; i += 1) {\n                    if (answerArray[i] === answer[i]) {\n                        console.log('strike', answerArray[i], answer[i]);\n                        strike_1 += 1;\n                    }\n                    else if (answer.includes(answerArray[i])) { //  includes  = ES2016에서 들어온 기능!\n                        console.log('ball', answerArray[i], answer.indexOf(answerArray[i]));\n                        ball_1 += 1;\n                    }\n                }\n                setTries(function (t) { return (__spreadArray(__spreadArray([], t), [\n                    {\n                        \"try\": value,\n                        result: strike_1 + \" \\uC2A4\\uD2B8\\uB77C\\uC774\\uD06C, \" + ball_1 + \" \\uBCFC\\uC785\\uB2C8\\uB2E4.\"\n                    }\n                ])); });\n                setValue('');\n                // if (input) {\n                //   input.focus();\n                // }\n                input && input.focus();\n            }\n        }\n    }, []);\n    return (React.createElement(React.Fragment, null,\n        React.createElement(\"h1\", null, result),\n        React.createElement(\"form\", { onSubmit: onSubmitForm },\n            React.createElement(\"input\", { ref: inputE1, maxLength: 4, value: value, onChange: react_1.useCallback(function (e) { return setValue(e.target.value); }, []) }),\n            React.createElement(\"button\", null, \"Button\")),\n        React.createElement(\"div\", null,\n            \"\\uC2DC\\uB3C4: \",\n            tries.length),\n        React.createElement(\"ul\", null, tries.map(function (v, i) { return (React.createElement(Try_1[\"default\"], { key: i + 1 + \"\\uCC28 \\uC2DC\\uB3C4 : \" + v[\"try\"], tryInfo: v })); }))));\n};\nexports.default = NumberBaseBall;\n\n\n//# sourceURL=webpack://lecture2/./NumberBaseBall.tsx?");
+
+/***/ }),
+
+/***/ "./Try.tsx":
+/*!*****************!*\
+  !*** ./Try.tsx ***!
+  \*****************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar react_1 = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nvar WordRelay = function () {\n    var _a = react_1.useState('사과'), word = _a[0], setWord = _a[1];\n    var _b = react_1.useState(''), value = _b[0], setValue = _b[1];\n    var _c = react_1.useState(''), result = _c[0], setResult = _c[1];\n    var inputE1 = react_1.useRef(null);\n    var onSubmitForm = react_1.useCallback(function (e) {\n        e.preventDefault();\n        var input = inputE1.current;\n        if (word[word.length - 1] === value[0]) {\n            setResult('정답');\n            setWord(value);\n            setValue('');\n            if (input) {\n                input.focus();\n            }\n        }\n        else {\n            setResult('오답');\n            setValue('');\n            if (input) {\n                input.focus();\n            }\n        }\n    }, [value]); // [value] 꼭 넣어야한다. \n    var onChange = react_1.useCallback(function (e) {\n        setValue(e.currentTarget.value);\n    }, []);\n    return (React.createElement(React.Fragment, null,\n        React.createElement(\"div\", null, word),\n        React.createElement(\"form\", { onSubmit: onSubmitForm },\n            React.createElement(\"input\", { ref: inputE1, value: value, onChange: onChange }),\n            React.createElement(\"button\", null, \"Button\")),\n        React.createElement(\"div\", null, result)));\n};\nexports.default = WordRelay;\n\n\n//# sourceURL=webpack://lecture2/./WordRelay.tsx?");
+eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n// interface FunctionComponent<P = {}> P === PROPS 약어\nvar Try = function (_a) {\n    //const Try = ({ tryInfo }: { tryInfo: TryInfo }) => {\n    var tryInfo = _a.tryInfo;\n    return (React.createElement(\"li\", null,\n        React.createElement(\"div\", null, tryInfo[\"try\"]),\n        React.createElement(\"div\", null, tryInfo.result)));\n};\n// PropTypes \nexports.default = Try;\n\n\n//# sourceURL=webpack://lecture2/./Try.tsx?");
 
 /***/ }),
 
@@ -126,7 +137,7 @@ eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
-eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\"); // 마우스 오른쪽 클릭 Go To Type Definition\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"../node_modules/react-hot-loader/root.js\");\nvar WordRelay_1 = __webpack_require__(/*! ./WordRelay */ \"./WordRelay.tsx\");\nvar Hot = root_1.hot(WordRelay_1[\"default\"]);\n// export default가 있어서,  * as를 사용안해도, 된다. \n// import * as React from 'react'는 export default가 없어서 사용해야한다.\nReactDOM.render(React.createElement(Hot, null), document.querySelector('#root'));\n\n\n//# sourceURL=webpack://lecture2/./client.tsx?");
+eval("\nexports.__esModule = true;\nvar React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\"); // 마우스 오른쪽 클릭 Go To Type Definition\nvar ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nvar root_1 = __webpack_require__(/*! react-hot-loader/root */ \"../node_modules/react-hot-loader/root.js\");\n// import GuGuDan from './GuGuDan'\n// import WordRelay from './WordRelay'\nvar NumberBaseBall_1 = __webpack_require__(/*! ./NumberBaseBall */ \"./NumberBaseBall.tsx\");\nvar Hot = root_1.hot(NumberBaseBall_1[\"default\"]);\n// export default가 있어서,  * as를 사용안해도, 된다. \n// import * as React from 'react'는 export default가 없어서 사용해야한다.\nReactDOM.render(React.createElement(Hot, null), document.querySelector('#root'));\n\n\n//# sourceURL=webpack://lecture2/./client.tsx?");
 
 /***/ }),
 
@@ -215,7 +226,7 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
