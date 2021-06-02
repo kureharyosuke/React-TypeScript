@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 // <> === React.Fragment 와 동일하다.
 const GuGuDan = () => {
   const [first, setFirst] = useState<number>(Math.ceil(Math.random() * 9))
-  const [second, setSecond] = useState(Math.ceil(Math.random() * 9))
+  const [second, setSecond] = useState<number>(Math.ceil(Math.random() * 9))
   const [value, setValue] = useState('')
   const [result, setResult] = useState('')
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +32,7 @@ const GuGuDan = () => {
 
   }
 
+  // <> === React.Fragment 와 동일하다.
   return (
     <>
       <div>{first} * {second}</div>
