@@ -15,7 +15,7 @@ const getNumbers = () => {
 
 
 
-const NumberBassBall = () => {
+const NumberBaseBall = () => {
   const [answer, setAnswer] = useState(getNumbers());
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
@@ -115,4 +115,4 @@ const NumberBassBall = () => {
   );
 };
 
-export default NumberBassBall;
+export default NumberBaseBall;
