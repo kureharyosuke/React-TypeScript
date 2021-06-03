@@ -4,6 +4,7 @@ import UseEffectComponent from './UseEffectComponent'
 import UseContextComponent from './UseContextComponent'
 import UseReducerComponent from './UseReducerComponent'
 import UseRefComponent from './UseRefComponent'
+import CustomHookComponent from './CustomHookComponent'
 
 import './App.css';
 
@@ -20,6 +21,8 @@ function App() {
       <UseReducerComponent />
       <h1>useRef</h1>
       <UseRefComponent />
+      <h1>customHook</h1>
+      <CustomHookComponent />
     </div>
   );
 }
