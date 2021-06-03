@@ -6,6 +6,7 @@ import UseReducerComponent from './UseReducerComponent'
 import UseRefComponent from './UseRefComponent'
 import CustomHookComponent from './CustomHookComponent'
 import CustomHookComponent2 from './CustomHookComponent2'
+import EvenMoreReactComponent from './EvenMoreReactComponent'
 
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
       <h1>customHook2</h1>
       <CustomHookComponent2 />
       <h1>Even more React component TS stuff</h1>
+      <EvenMoreReactComponent />
     </div>
   );
 }
