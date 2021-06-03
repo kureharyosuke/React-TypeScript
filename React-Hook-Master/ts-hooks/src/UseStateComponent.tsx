@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+
 function UseStateComponent() {
 
   // const [arr, arrSet] = useState([]) // never[] | const arr: never[] | useState<never[]>(initialState: never[] | (() => never[])): [never[], React.Dispatch<React.SetStateAction<never[]>>] (+1 overload)
