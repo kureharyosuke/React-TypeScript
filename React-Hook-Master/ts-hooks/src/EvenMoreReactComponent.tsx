@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, ReactElement } from 'react'
 
 export interface HeadingProps { title: string }
 
@@ -36,7 +36,7 @@ export type ListComponent = <ListItem>({
 }: {
   items: ListItem[];
   render: (item: ListItem) => ReactNode;
-}) => ReactNode;
+}) => ReactElement;
 
 export const List2: ListComponent = ({ items, render }) => {
   return (
