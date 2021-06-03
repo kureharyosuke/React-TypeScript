@@ -26,6 +26,7 @@ function App() {
       <CustomHookComponent />
       <h1>customHook2</h1>
       <CustomHookComponent2 />
+      <h1>Even more React component TS stuff</h1>
     </div>
   );
 }
