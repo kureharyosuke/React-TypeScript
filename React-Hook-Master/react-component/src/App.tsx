@@ -4,6 +4,7 @@ import "./App.css";
 // 예전방식 작동은 하지만, 비추천한다. *****
 // const HeadingFC: React.FC<{ title: string }> = ({ title }) => <h1>{title}</h1>
 
+
 // Conventional props
 function Heading({ title }: { title?: string }) {
   return <h1>{title}</h1>;
@@ -24,10 +25,11 @@ function HeadingWithContent({
   return <h1>{children}</h1>;
 }
 
-// defaultProps
 
+
+// defaultProps
 const defaultContainerProps = {
-  heading: <strong>My Heading</strong>,
+  heading: <strong>Default Props My Heading</strong>,
 };
 type ContainerProps = { children: ReactNode } & typeof defaultContainerProps;
 
@@ -41,6 +43,7 @@ function Contatiner({ heading, children }: ContainerProps): ReactElement {
 }
 
 Contatiner.defaultProps = defaultContainerProps;
+
 
 // Functional Props
 function TextWithNumber({
@@ -80,6 +83,16 @@ function List<ListItem>({
   );
 }
 
+
+// Class component
+class ClassContainer extends React.Component<{ title: ReactNode }> {
+  render() {
+    return (
+      <h1>{this.props.title}</h1>
+    )
+  }
+}
+
 function App() {
   return (
     <div>
@@ -98,8 +111,17 @@ function App() {
         render={(itme: string) => <div>{itme.toLowerCase()}</div>}
       ></List>
       {/* apple banana orange */}
+      <ClassContainer title="Thank you" />
     </div>
   );
 }
 
 export default App;
+
+
+// type ReactText = string | number;
+// type ReactChild = ReactElement | ReactText;
+
+// interface ReactNodeArray extends Array<ReactNode> { }
+// type ReactFragment = {} | ReactNodeArray;
+// type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
