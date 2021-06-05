@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { ReactNode, ReactElement } from 'react';
 import './App.css';
+
+// Conventional props
+function Heading({ title }: { title?: string }) {
+  return (
+    <h1>{title}</h1>
+  )
+}
+
+// 성공!
+// function HeadingWithContent({ children }: { children: string | JSX.Element }) {
+//   return (
+//     <h1>{children}</h1>
+//   )
+// }
+
+function HeadingWithContent({ children }: { children: ReactNode }): ReactElement {
+  return (
+    <h1>{children}</h1>
+  )
+}
+
+// defaultProps
+
+const defaultContainerProps = {
+  heading: <strong>My Heading</strong>
+}
+type ContainerProps = { children: ReactNode } & typeof defaultContainerProps
+
+function Contatiner({ heading, children }: ContainerProps): ReactElement {
+  return (
+    <div><h1>{heading}</h1>{children}</div>
+  )
+}
+
+Contatiner.defaultProps = defaultContainerProps
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Heading title={"Heelo"}></Heading>
+      {/* <HeadingWithContent><strong>hI</strong></HeadingWithContent> */}
+      <HeadingWithContent><strong>hI</strong></HeadingWithContent>
+      <Contatiner>Foo</Contatiner >
+      {/* roperty 'heading' is missing in type '{ children: string; }'에러가 나니까,  heading: ReactNode,를  PROPS삭제, */}
     </div>
   );
 }
