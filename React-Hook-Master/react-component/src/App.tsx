@@ -26,8 +26,9 @@ function HeadingWithContent({ children }: { children: ReactNode }): ReactElement
 const defaultContainerProps = {
   heading: <strong>My Heading</strong>
 }
+type ContainerProps = { children: ReactNode } & typeof defaultContainerProps
 
-function Contatiner({ heading, children }: { children: ReactNode } & typeof defaultContainerProps): ReactElement {
+function Contatiner({ heading, children }: ContainerProps): ReactElement {
   return (
     <div><h1>{heading}</h1>{children}</div>
   )
