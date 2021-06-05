@@ -29,7 +29,7 @@ function HeadingWithContent({
 
 // defaultProps
 const defaultContainerProps = {
-  heading: <strong>My Heading</strong>,
+  heading: <strong>Default Props My Heading</strong>,
 };
 type ContainerProps = { children: ReactNode } & typeof defaultContainerProps;
 
@@ -117,3 +117,11 @@ function App() {
 }
 
 export default App;
+
+
+// type ReactText = string | number;
+// type ReactChild = ReactElement | ReactText;
+
+// interface ReactNodeArray extends Array<ReactNode> { }
+// type ReactFragment = {} | ReactNodeArray;
+// type ReactNode = ReactChild | ReactFragment | ReactPortal | boolean | null | undefined;
