@@ -4,6 +4,7 @@ import TopBar from "./components/TopBar";
 import TodoList from "./components/TodoList";
 import TodoAdd from "./components/TodoAdd";
 import { useTodos } from './store'
+import { TodosProvider } from './store'
 
 export function App() {
   // const [todos, todosSet] = React.useState<Todo[]>([]); -> Store로 이동 
@@ -12,6 +13,8 @@ export function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      <TodosProvider></TodosProvider>
+      {/* Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'. */}
       <Box maxWidth="8xl" margin="auto" p={5}>
         <TopBar todosSet={todosSet} />
         <TodoList todos={todos} todosSet={todosSet} />
