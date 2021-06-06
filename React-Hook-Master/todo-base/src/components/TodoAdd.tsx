@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Button, Input, Grid } from "@chakra-ui/react";
-import { SetTodosType, TodosType, addTodo } from '../store'
+import { useTodosContext, addTodo } from '../store'
 
-function TodoAdd({ todos, todosSet }: { todos: TodosType; todosSet: SetTodosType; }) {
+function TodoAdd() {
   const [newTodo, newTodoSet] = React.useState("");
+  const [todos, todosSet] = useTodosContext()
 
   return (
     <Grid pt={2} templateColumns="5fr 1fr" columnGap="3">
