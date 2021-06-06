@@ -6,6 +6,7 @@ import TodoAdd from "./components/TodoAdd";
 import { useTodos } from './store'
 
 export function App() {
+  // const [todos, todosSet] = React.useState<Todo[]>([]); -> Store로 이동 
   const [todos, todosSet] = useTodos([]);
 
 
@@ -13,8 +14,8 @@ export function App() {
     <ChakraProvider theme={theme}>
       <Box maxWidth="8xl" margin="auto" p={5}>
         <TopBar todosSet={todosSet} />
-        <TodoList todos={todos} todoSet={todosSet} />
-        <TodoAdd todoSet={todosSet} />
+        <TodoList todos={todos} todosSet={todosSet} />
+        <TodoAdd todos={todos} todosSet={todosSet} />
       </Box>
     </ChakraProvider>
   );

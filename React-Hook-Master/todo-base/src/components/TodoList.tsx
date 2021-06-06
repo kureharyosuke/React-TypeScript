@@ -23,7 +23,7 @@ function TodoList({ todos, todosSet }: { todos: TodosType, todosSet: SetTodosTyp
   return (
     <>
       <Heading>Todo List</Heading>
-      <TodoListItems />
+      <TodoListItems todos={todos} todosSet={todosSet} />
     </>
   );
 }
