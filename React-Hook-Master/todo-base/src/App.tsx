@@ -16,8 +16,11 @@ export function App() {
       <TodosProvider>
         {/* Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'. */}
         <Box maxWidth="8xl" margin="auto" p={5}>
+          {/* <TopBar todosSet={todosSet} /> */}
           <TopBar />
+          {/* <TodoList todos={todos} todosSet={todosSet} /> */}
           <TodoList />
+          {/* <TodoAdd todos={todos} todosSet={todosSet} /> */}
           <TodoAdd />
         </Box>
       </TodosProvider>

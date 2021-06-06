@@ -7,7 +7,15 @@ import {
   removeTodo,
 } from "../store";
 
-function TodoListItems() {
+function TodoListItems(
+  //   {
+  //   todos,
+  //   todosSet,
+  // }: {
+  //   todos: TodosType;
+  //   todosSet: SetTodosType;
+  //   }
+) {
   const [todos, todosSet] = useTodosContext()
 
   return (
@@ -52,10 +60,19 @@ function TodoListItems() {
   );
 }
 
-function TodoList() {
+function TodoList(
+  //   {
+  //   todos,
+  //   todosSet,
+  // }: {
+  //   todos: TodosType;
+  //   todosSet: SetTodosType;
+  //   }
+) {
   return (
     <>
       <Heading>Todo List</Heading>
+      {/* <TodoListItems todos={todos} todosSet={todosSet} /> */}
       <TodoListItems />
     </>
   );
