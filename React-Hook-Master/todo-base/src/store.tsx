@@ -46,7 +46,7 @@ const TodoContext = React.createContext<UseTodosType | null>(null);
 export const useTodosContext = () => React.useContext(TodoContext)!;
 
 export const TodosProvider = ({ children }: { children: React.ReactNode }) => (
-  <TodoContext.Provider value={useTodos()}>{children}</TodoContext.Provider>
+  <TodoContext.Provider value={useTodos([])}>{children}</TodoContext.Provider>
 );
 
 // Type
