@@ -13,13 +13,14 @@ export function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <TodosProvider></TodosProvider>
-      {/* Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'. */}
-      <Box maxWidth="8xl" margin="auto" p={5}>
-        <TopBar todosSet={todosSet} />
-        <TodoList todos={todos} todosSet={todosSet} />
-        <TodoAdd todos={todos} todosSet={todosSet} />
-      </Box>
-    </ChakraProvider>
+      <TodosProvider>
+        {/* Property 'children' is missing in type '{}' but required in type '{ children: ReactNode; }'. */}
+        <Box maxWidth="8xl" margin="auto" p={5}>
+          <TopBar todosSet={todosSet} />
+          <TodoList todos={todos} todosSet={todosSet} />
+          <TodoAdd todos={todos} todosSet={todosSet} />
+        </Box>
+      </TodosProvider>
+    </ChakraProvider >
   );
 }
