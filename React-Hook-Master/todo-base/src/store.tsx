@@ -1,4 +1,6 @@
 import * as React from "react";
+
+
 export interface Todo {
   id: number;
   text: string;
@@ -33,15 +35,45 @@ export const addTodo = (todos: Todo[], text: string): Todo[] => [
 
 // App.tsx에 있는 것을 store에 정의 : const  [ todos ,  todosSet ]  =  React . useState < Todo [ ] > ( [ ] ) ;
 
-export const useTodos = (initial: Todo[]) => React.useState<Todo[]>([]);
+// export const useTodos = (initial: Todo[]) => React.useState<Todo[]>([]);
+// CustomHooks 커스텀훅
+const useTodos = (initial: Todo[]) => {
+  const [todos, todosSet] = React.useState<Todo[]>(initial)
+  const [newTodo, newTodoSet] = React.useState("");
+
+  return {
+    todos,
+    newTodo,
+    newTodoSet,
+    addTodo() {
+      todosSet(tl => addTodo(tl, newTodo))
+      newTodoSet("");
+    },
+    updateTodo(id: number, text: string) {
+      todosSet(tl => updateTodo(tl, id, text))
+    },
+    toggleTodo(id: number) {
+      todosSet(tl => toggleTodo(tl, id))
+    },
+    removeTodo(id: number) {
+      todosSet(tl => removeTodo(tl, id))
+    },
+    load(inTodos: Todo[]) {
+      todosSet(inTodos)
+    }
+  }
+}
+
+
 
 // type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
-export type UseTodosType = ReturnType<typeof useTodos>;
+// export type UseTodosType = ReturnType<typeof useTodos>; : export 사용할 필요가 없어짐, useTodosContext 로 통합되어 있기때문에
+type UseTodosType = ReturnType<typeof useTodos>;
 
-export type TodosType = UseTodosType[0];
-export type SetTodosType = UseTodosType[1];
+// export type TodosType = UseTodosType[0];
+// export type SetTodosType = UseTodosType[1];
 
-//
+//# Custom Hooks TodosProvider & useContext
 
 const TodoContext = React.createContext<UseTodosType | null>(null);
 

@@ -10,8 +10,9 @@ function TodoAdd() {
   //   todos: TodosType;
   //   todosSet: SetTodosType;
   //   }
-  const [newTodo, newTodoSet] = React.useState("");
-  const [todos, todosSet] = useTodosContext();
+  // const [newTodo, newTodoSet] = React.useState("");
+  // const [todos, todosSet] = useTodosContext();
+  const { newTodo, newTodoSet, addTodo } = useTodosContext();
 
   return (
     <Grid pt={2} templateColumns="5fr 1fr" columnGap="3">
@@ -21,10 +22,17 @@ function TodoAdd() {
         onChange={(evt) => newTodoSet(evt.target.value)}
       />
       {/* event.target.value　상태값을 보존하고,  */}
-      <Button
+      {/* <Button
         onClick={() => {
           todosSet(addTodo(todos, newTodo));
           newTodoSet("");
+        }}
+      >
+        Add Todo
+      </Button> */}
+      <Button
+        onClick={() => {
+          addTodo();
         }}
       >
         Add Todo
