@@ -1,4 +1,14 @@
-import { Todo } from "./types";
+import { createStore } from "redux";
+import {
+  ActionTypes,
+  SET_TODOS,
+  DELETE_TODO,
+  SET_NEWTODO,
+  UPDATE_TODO,
+  TOGGLE_TODO,
+  ADD_TODO,
+} from "./actions";
+import { Store, Todo } from "./types";
 
 // Standard interface and functions
 
@@ -25,3 +35,52 @@ export const addTodo = (todos: Todo[], text: string): Todo[] => [
     done: false,
   },
 ];
+
+// Redux implementation
+function todoReducer(
+  state: Store = {
+    todos: [],
+    newTodo: "",
+  },
+  action: ActionTypes
+) {
+  switch (action.type) {
+    case SET_TODOS:
+      return {
+        ...state,
+        todos: action.payload,
+      };
+    case SET_NEWTODO:
+      return {
+        ...state,
+        newTodo: action.payload,
+      };
+    case DELETE_TODO:
+      return {
+        ...state,
+        todos: removeTodo(state.todos, action.payload),
+      };
+    case UPDATE_TODO:
+      return {
+        ...state,
+        todos: updateTodo(state.todos, action.payload.id, action.payload.text),
+      };
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        todos: toggleTodo(state.todos, action.payload),
+      };
+    case ADD_TODO:
+      return {
+        ...state,
+        newTodo: "",
+        todos: addTodo(state.todos, state.newTodo),
+      };
+    default:
+      return state;
+  }
+}
+
+const store = createStore(todoReducer);
+
+export default store;
