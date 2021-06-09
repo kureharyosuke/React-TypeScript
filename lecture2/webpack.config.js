@@ -22,5 +22,10 @@ module.exports = {
   output: {
     filename: "[name].js",
     path: path.join(__dirname, "dist"),
-  }, // 뽑아내는 건 output에서
+    publicPath: "/dist", //webpack dev server
+  },
+  devServer: {
+    port: 8080,
+    publicPath: "/dist/",
+  }, // webpack-cli@4: webpack serve --env development (package.json)
 };
