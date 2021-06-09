@@ -13,14 +13,13 @@ const getNumbers = () => {
   return array;
 }
 
-
-
 const NumberBaseBall = () => {
   const [answer, setAnswer] = useState(getNumbers());
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
-  const [tries, setTries] = useState<TryInfo[]>([]);
+  const [tries, setTries] = useState<TryInfo[]>([]); // 자바스크립트 빈배열은 타입스크립트 정의해야한다.
   const inputE1 = useRef<HTMLInputElement>(null); // function useRef<T>(initialValue: T | null): RefObject<T>;
+
   // 타입
   // interface RefObject<T> {
   //   readonly current: T | null;
@@ -89,7 +88,7 @@ const NumberBaseBall = () => {
       }
     }
 
-  }, [])
+  }, [value, answer])
 
   return (
     <>
