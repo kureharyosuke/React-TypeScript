@@ -88,7 +88,7 @@ const NumberBaseBall = () => {
       }
     }
 
-  }, [])
+  }, [value, answer])
 
   return (
     <>
