@@ -2,9 +2,9 @@
 import * as React from "react";
 import { useState, useRef, useCallback } from "react";
 
-const ResponseCheck = () => {
-  const [state, setState] = useState<string | null>("waiting");
-  const [message, setMessage] = useState<string | null>("클릭해서 시작하세요.");
+export const ResponseCheck = () => {
+  const [state, setState] = useState<string | undefined>("waiting");
+  const [message, setMessage] = useState<string | undefined>("클릭해서 시작하세요.");
   const [result, setResult] = useState<number[]>([]);
   const timeout = useRef<number | null>(null); // useRef 타입은 3가지 이기때문에 주의
   const startTime = useRef<number>(0); // Type = readonly
