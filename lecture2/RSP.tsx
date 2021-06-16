@@ -49,7 +49,7 @@ export const RSP = () => {
 
   useEffect(() => { // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
     console.log('다시 실행')
-    interval.current = setInterval(changeHand, 100);
+    interval.current = window.setInterval(changeHand, 100); // NodeJS.Timeout 을 가리키는 걸 브라우저로 window => number
     return () => {// componentWillUnmount 역할
       console.log('종료')
       clearInterval(interval.current)
@@ -58,7 +58,7 @@ export const RSP = () => {
 
   const changeHand = () => {
     if (imgCoord === rspCoords.바위) {
-      setImgCoord(rspCoords.가위);
+      setImgCoord(rspCoords.가위); // 타입에러나니까, useState 제너릭<Type>을 정의해준다. rspCoords 타입은 ImgCoords이기때문에 <ImgCoords>
     } else if (imgCoord === rspCoords.가위) {
       setImgCoord(rspCoords.보);
     } else if (imgCoord === rspCoords.보) {
@@ -67,7 +67,7 @@ export const RSP = () => {
   }
 
   // 고차함수
-  const onClickBtn = () => () => {
+  const onClickBtn = (choice: keyof typeof rspCoords) => () => {
     clearInterval(interval.current)
     const myScore = scores[choice];
     const cpuScore = scores[computerChoice(imgCoord)]
