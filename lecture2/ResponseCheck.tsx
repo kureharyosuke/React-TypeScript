@@ -1,3 +1,4 @@
+// 주의 ! setTimeout(NodeJS.Timeout은 안된다. 서버) | window.setTimeout 과 제너릭으로 <number | null>
 import * as React from "react";
 import { useState, useRef, useCallback } from "react";
 
@@ -5,13 +6,13 @@ const ResponseCheck = () => {
   const [state, setState] = useState<string | null>("waiting");
   const [message, setMessage] = useState<string | null>("클릭해서 시작하세요.");
   const [result, setResult] = useState<number[]>([]);
-  const timeout = useRef<number>(null);
-  const startTime = useRef<number>(0);
-  const endTime = useRef<number>(0);
+  const timeout = useRef<number | null>(null); // useRef 타입은 3가지 이기때문에 주의
+  const startTime = useRef<number>(0); // Type = readonly
+  const endTime = useRef<number>(0); // Type = readonly
 
   const onClickScreen = useCallback(() => {
     if (state === 'waiting') {
-      timeout.current = setTimeout(() => { // 에러 날때, 제너릭을 꼭 확인!!
+      timeout.current = window.setTimeout(() => { // 에러 날때, 제너릭을 꼭 확인!! // setTimeout = NodeJS.Timeout 으로 잡고 있으니까, window(브라우저).setTimeout
         setState('now');
         setMessage('지금 클릭');
         startTime.current = new Date().getTime();
