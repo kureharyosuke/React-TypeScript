@@ -25,11 +25,22 @@ export const RSP = () => {
   const [score, setScore] = useState(0);
   const interval = useRef<number>();
 
+  useEffect(() => { // componentDidMount, componentDidUpdate 역할(1대1 대응은 아님)
+    console.log('다시 실행')
+    interval.current = setInterval(changeHand, 100);
+    return () => {// componentWillUnmount 역할
+      console.log('종료')
+      clearInterval(interval.current)
+    }
+  }, [imgCoord])
+
   const changeHand = () => {
     if (imgCoord === rspCoords.바위) {
       setImgCoord(rspCoords.가위);
     } else if (imgCoord === rspCoords.가위) {
-      setImgCoord(rspCoords.바위);
+      setImgCoord(rspCoords.보);
+    } else if (imgCoord === rspCoords.보) {
+      setImgCoord(rspCoords.바위)
     }
   }
 
