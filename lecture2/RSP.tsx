@@ -13,6 +13,17 @@ const scores = {
   보: -1,
 } as const
 
+type a = typeof rspCoords
+//type a = {
+//     readonly 바위: "0";
+//     readonly 가위: "-142px";
+//     readonly 보: "-284px";
+// }
+type b = keyof typeof rspCoords
+//type b = "바위" | "가위" | "보"
+
+type imgCoords = '0' | '-142px' | '-284px' // Union type
+
 const computerChoice = (imgCoords) => {
   return Object.keys(rspCoords).find((k) => {
     return rspCoords[k] === imgCoords;
