@@ -34,8 +34,12 @@ type ImgCoords = typeof rspCoords[keyof typeof rspCoords]
 const computerChoice = (imgCoords: ImgCoords) => {
   return (Object.keys(rspCoords) as ['바위', '가위', '보']).find((k) => {
     return rspCoords[k] === imgCoords;
-  })
+  })!
 }
+
+//const computerChoice: (imgCoords: ImgCoords) => "바위" | "가위" | "보" | undefined // undefined 잘못추론을 잡아줘야한다.
+//! const computerChoice: (imgCoords: ImgCoords) => "바위" | "가위" | "보" // 확실하다고 !을 느낌표를 붙여줘야한다.
+// *** 확실을 가졌을때는, undefined 가 안나오게, ! 를 꼭 붙여주자.
 
 export const RSP = () => {
   const [result, setResult] = useState('');
