@@ -15,7 +15,7 @@ const ResponseCheck = () => {
         setState('now');
         setMessage('지금 클릭');
         startTime.current = new Date().getTime();
-      }, Math.floor(Math.random() * 1000) + 2000); // 2초~3초 랜덤
+      }, Math.floor(Math.random() * 1000) + 2000) // 2초~3초 랜덤 // 강제로 형변할떄는
       setState('ready');
       setMessage('초록색이 되면 클릭하세요.');
     } else if (state === 'ready') { // 성급하게 클릭
@@ -33,6 +33,7 @@ const ResponseCheck = () => {
       })
     } // 반응속도 체크 
   }, [state]) // state 가 조건문에 맞게 상태 값이 변경되니까, state를 넘어주어야 한다.
+
 
 
   const onReset = useCallback(() => {
