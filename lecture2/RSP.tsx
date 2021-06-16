@@ -14,17 +14,22 @@ const scores = {
 } as const
 
 type a = typeof rspCoords
-//type a = {
-//     readonly 바위: "0";
-//     readonly 가위: "-142px";
-//     readonly 보: "-284px";
-// }
+// //type a = {
+// //     readonly 바위: "0";
+// //     readonly 가위: "-142px";
+// //     readonly 보: "-284px";
+// // }
 type b = keyof typeof rspCoords
-//type b = "바위" | "가위" | "보"
+// //type b = "바위" | "가위" | "보"
 
-type imgCoords = '0' | '-142px' | '-284px' // Union type
+// type imgCoords = '0' | '-142px' | '-284px' // Union type 
+// 비추천은 위의 const rspCoords의 고정값과 유니온 타입이 중복되어서, 같이 변경해줘야한다.
+type ImgCoords = typeof rspCoords[keyof typeof rspCoords]
 
-const computerChoice = (imgCoords) => {
+
+// **** Object.key : type = keys(o: object): string[];
+
+const computerChoice = (imgCoords: ImgCoords) => {
   return Object.keys(rspCoords).find((k) => {
     return rspCoords[k] === imgCoords;
   })
