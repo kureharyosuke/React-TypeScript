@@ -5,13 +5,13 @@ const rspCoords = {
   바위: '0',
   가위: '-142px',
   보: '-284px'
-}
+} as const
 
 const scores = {
   가위: 1,
   바위: 0,
   보: -1,
-}
+} as const
 
 const computerChoice = (imgCoords) => {
   return Object.keys(rspCoords).find((k) => {
