@@ -27,10 +27,12 @@ type b = keyof typeof rspCoords
 type ImgCoords = typeof rspCoords[keyof typeof rspCoords]
 
 
-// **** Object.key : type = keys(o: object): string[];
+// *** Object.key : type = keys(o: object): string[]; 제너릭값이 없어 아쉽다.
+
+// ***** 강제 형변환 Object.keys(rspCoords) => (Object.keys(rspCoords) as ['바위', '가위', '보'])
 
 const computerChoice = (imgCoords: ImgCoords) => {
-  return Object.keys(rspCoords).find((k) => {
+  return (Object.keys(rspCoords) as ['바위', '가위', '보']).find((k) => {
     return rspCoords[k] === imgCoords;
   })
 }
