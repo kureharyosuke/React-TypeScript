@@ -74,7 +74,7 @@ export const RSP = () => {
     const diff = myScore - cpuScore;
     if (diff === 0) {
       setResult('비겼습니다.')
-    } else if ([-1, 2].includes(diff)) {
+    } else if ([-1, 2].includes(diff)) { // 배열에 includes 사용할때는 => es2016
       setResult('이겼습니다.')
       setScore((prevScore) => prevScore + 1)
     } else {
@@ -82,7 +82,7 @@ export const RSP = () => {
       setScore((prevScore) => prevScore - 1)
     }
     setTimeout(() => {
-      interval.current = setInterval(changeHand, 100);
+      interval.current = window.setInterval(changeHand, 100);
     }, 1000)
   }
 
