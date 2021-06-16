@@ -37,6 +37,7 @@ export const addTodo = (todos: Todo[], text: string): Todo[] => [
 
 // export const useTodos = (initial: Todo[]) => React.useState<Todo[]>([]);
 // CustomHooks 커스텀훅
+// API 배열
 const useTodos = (initial: Todo[]) => {
   const [todos, todosSet] = React.useState<Todo[]>(initial)
   const [newTodo, newTodoSet] = React.useState("");
