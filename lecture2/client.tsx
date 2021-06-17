@@ -5,9 +5,10 @@ import { hot } from 'react-hot-loader/root'
 // import GuGuDan from './GuGuDan'
 // import WordRelay from './WordRelay'
 // import NumberBaseBall from './NumberBaseBall'
-import { ResponseCheck } from './ResponseCheck'
+// import { ResponseCheck } from './ResponseCheck'
+import { RSP } from './RSP'
 
-const Hot = hot(ResponseCheck);
+const Hot = hot(RSP);
 
 // export default가 있어서,  * as를 사용안해도, 된다. 
 // import * as React from 'react'는 export default가 없어서 사용해야한다.
