@@ -2,26 +2,29 @@ import * as React from 'react'
 // import Ball from './Ball'
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 
-function getWinNumber() {
+function getWinNumbers() {
   console.log('getWinNumbers')
 
-  const candidate = Array(45).fill(null).map((v, i) => i + 1);
+  const candidate = Array(45).fill(null).map((v, i) => i + 1); // fill(null) 추가
   const shuffle = [];
+
   while (candidate.length > 0) {
     shuffle.push(candidate.splice(Math.floor(Math.random() * candidate.length), 1)[0])
   }
 
-  const bonusNumber = shuffle[shuffle.length - 1]
-  const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c)
+  const bonusNumber = shuffle[shuffle.length - 1] // 보너스 공
+
+  const winNumbers = shuffle.slice(0, 6).sort((p, c) => p - c) // 당첨숫자 정렬
 
   return [...winNumbers, bonusNumber]
 
 }
 
 export const Lotto = () => {
-  const lottoNumbers = useMemo(() => getWinNumbers(), []);
+  // useMemo를 안쓰면, 리렌더링된다.
+  const lottoNumbers = useMemo<number[]>(() => getWinNumbers(), []);
   const [winNumbers, setWinNumbers] = useState(lottoNumbers);
-  const [winBalls, setWinBalls] = useState<number[]>([]);
+  const [winBalls, setWinBalls] = useState<number[]>([]); // 빈배열일때, never[] 이기때문에, 꼭 정확하게 지정해주어야한다.
   const [bonus, setBonus] = useState<number | null>(null);
   const [redo, setRedo] = useState(false);
   const timeouts = useRef<number[]>([]);
@@ -57,7 +60,7 @@ export const Lotto = () => {
     console.log('onClickRedo');
     console.log(winNumbers);
 
-    setWinNumbers(getWinNumber());
+    setWinNumbers(getWinNumbers());
     setWinBalls([]);
     setBonus(null);
     setRedo(false);
@@ -75,5 +78,5 @@ export const Lotto = () => {
       {bonus && <Ball number={bonus}>}
         {redo && <button onClick={onClickRedo}>한번더</button>}
     </>
-  )
+    )
 }
