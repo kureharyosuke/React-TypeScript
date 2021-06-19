@@ -21,7 +21,7 @@ function getWinNumbers() {
 }
 
 export const Lotto = () => {
-  // useMemo를 안쓰면, 리렌더링된다.
+  // useMemo를 안쓰면, 리렌더링된다. 그러면 하나씩 뽑히는 공이 다시 바뀐다.
   const lottoNumbers = useMemo<number[]>(() => getWinNumbers(), []);
   const [winNumbers, setWinNumbers] = useState(lottoNumbers);
   const [winBalls, setWinBalls] = useState<number[]>([]); // 빈배열일때, never[] 이기때문에, 꼭 정확하게 지정해주어야한다.
@@ -56,7 +56,7 @@ export const Lotto = () => {
     console.log('로또 숫자를 생성합니다.')
   }, [winNumbers])
 
-  const onClickRedo = useCallback(() => {
+  const onClickRedo = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     console.log('onClickRedo');
     console.log(winNumbers);
 
