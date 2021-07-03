@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "lib": ["es5", "es2015", "es2016", "es2017", "dom"], // es2017 ansyc await | es2016 includes
+    "jsx": "react",
+    "esModuleInterop": true //  true로 하면, import * as React from 'react' => import React from 'react'를 사용가능
+  }
+}
+
+// "esModuleInterop": true 는 비추천한다.
