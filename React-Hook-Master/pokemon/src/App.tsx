@@ -2,10 +2,21 @@ import React, { useState } from "react";
 import { Box } from "@fower/react";
 import { styled } from "@fower/styled";
 
+interface Pokemon {
+  id: number;
+  name: {
+    english: string;
+    japanese: string;
+  };
+  type: string[];
+  base: Record<string, number>;
+}
+
 const Input = styled("input");
 
 function App() {
-  const [filter, setFilter] = useState("");
+  const [filter, setFilter] = useState<string>("");
+  const [allPokemon, setAllPokemon] = useState<string[]>([]);
 
   return (
     <Box p-10 maxW-1200 m="auto">
@@ -22,7 +33,7 @@ function App() {
           setFilter(evt.target.value)
         }
       />
-      {filter}
+      <h2>{filter}</h2>
     </Box>
   );
 }
