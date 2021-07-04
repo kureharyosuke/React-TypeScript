@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Box } from "@fower/react";
 import { styled } from "@fower/styled";
 
@@ -7,21 +7,27 @@ import usePokemon from "./usePokemon";
 const Input = styled("input");
 
 function App() {
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
   const { filter, setFilter, pokemon } = usePokemon();
 
-  useEffect(() => {
-    console.log("Pokemon changed");
-  }, [pokemon]);
+  // useEffect(() => {
+  //   console.log("setFilter changed");
+  // }, [setFilter]);
   // 1. useEffect로 리랜더링 확인 [버튼을 클릭할때마다, 리랜더링됨 ex) 24 App.tsx:14 Pokemon changed
   /**
-   * @param usePokemon에 const lcFilter, const pokemon을 useMemo를 감싸서, 변경되는 값, filter allPokemon(data)를 정의하니까, *버튼을 클릭할때마다, 리랜더링 안됨
+   * @param usePokemon 에 const lcFilter, const pokemon을 useMemo를 감싸서, 변경되는 값, filter allPokemon(data)를 정의하니까, *버튼을 클릭할때마다, 리랜더링 안됨
    */
   // 2. usePokemon에 const lcFilter, const pokemon을 useMemo를 감싸서, 변경되는 값, filter allPokemon(data)를 정의하니까, *버튼을 클릭할때마다, 리랜더링 안됨
 
+  // #event(evt) : type any = const onSetFilter = useCallback((evt) => setFilter(evt.target.value), []);
+  const onSetFilter = useCallback(
+    (evt: React.ChangeEvent<HTMLInputElement>) => setFilter(evt.target.value),
+    [setFilter]
+  );
+
   return (
     <Box p-10 maxW-1200 m="auto">
-      <button onClick={() => setCount(count + 1)}>Bump Count - {count}</button>
+      {/* <button onClick={() => setCount(count + 1)}>Bump Count - {count}</button> */}
       {/* 1. useEffect로 리랜더링 확인  */}
       <h1>Hello Pokemon</h1>
       <Input
@@ -32,15 +38,47 @@ function App() {
         borderGray500
         w="100%"
         value={filter}
-        onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-          setFilter(evt.target.value)
-        }
+        onChange={onSetFilter}
       />
       {/* <h2>{filter}</h2> */}
       <Box>
         {pokemon.map((pokemon) => (
-          <Box key={pokemon.id} text3XL>
-            {pokemon.name.english}
+          <Box
+            key={pokemon.id}
+            text3XL
+            p-10
+            border-1
+            borderGray500
+            roundedXL
+            grid
+            gridTemplateColumns-2--md
+            gridTemplateColumns-1--sm
+            gap-10
+          >
+            <Box
+              as="img"
+              src={`/pokemon/${pokemon.name.english.toLowerCase()}.jpg`}
+              w="100%"
+            />
+            <Box>
+              <Box textLG fontBold>
+                {pokemon.name.english}
+              </Box>
+              <Box textLG fontBold>
+                {pokemon.name.japanese}
+              </Box>
+              <Box textSM mt-10>
+                {pokemon.type.join(", ")}
+              </Box>
+              <Box grid gridTemplateColumns-2 gap-10>
+                {Object.keys(pokemon.base).map((k) => (
+                  <React.Fragment>
+                    <Box>{k}</Box>
+                    <Box>{pokemon.base[k]}</Box>
+                  </React.Fragment>
+                ))}
+              </Box>
+            </Box>
           </Box>
         ))}
       </Box>
