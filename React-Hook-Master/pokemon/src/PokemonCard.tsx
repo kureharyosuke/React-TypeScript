@@ -3,7 +3,11 @@ import { Box } from "@fower/react";
 
 import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데, export interface
 
-const PokemonCard = ({ name, type, base }: Pokemon) => {
+const PokemonCard: React.FunctionComponent<Pokemon> = ({
+  name,
+  type,
+  base,
+}) => (
   <Box
     text3XL
     p-10
@@ -37,7 +41,7 @@ const PokemonCard = ({ name, type, base }: Pokemon) => {
         ))}
       </Box>
     </Box>
-  </Box>;
-};
+  </Box>
+);
 
 export default PokemonCard;
