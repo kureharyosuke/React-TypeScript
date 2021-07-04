@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback } from "react";
 import { Box } from "@fower/react";
 import { styled } from "@fower/styled";
 
@@ -10,9 +10,9 @@ function App() {
   // const [count, setCount] = useState(1);
   const { filter, setFilter, pokemon } = usePokemon();
 
-  useEffect(() => {
-    console.log("setFilter changed");
-  }, [setFilter]);
+  // useEffect(() => {
+  //   console.log("setFilter changed");
+  // }, [setFilter]);
   // 1. useEffect로 리랜더링 확인 [버튼을 클릭할때마다, 리랜더링됨 ex) 24 App.tsx:14 Pokemon changed
   /**
    * @param usePokemon 에 const lcFilter, const pokemon을 useMemo를 감싸서, 변경되는 값, filter allPokemon(data)를 정의하니까, *버튼을 클릭할때마다, 리랜더링 안됨
@@ -43,8 +43,23 @@ function App() {
       {/* <h2>{filter}</h2> */}
       <Box>
         {pokemon.map((pokemon) => (
-          <Box key={pokemon.id} text3XL>
-            {pokemon.name.english}
+          <Box
+            key={pokemon.id}
+            text3XL
+            p-10
+            border-1
+            borderGray500
+            roundedXL
+            grid
+            gridTemplateColumns-2
+            gap-10
+          >
+            <Box
+              as="img"
+              src={`/pokemon/${pokemon.name.english.toLowerCase()}.jpg`}
+              w="100%"
+            />
+            <Box textLG>{pokemon.name.english}</Box>
           </Box>
         ))}
       </Box>
