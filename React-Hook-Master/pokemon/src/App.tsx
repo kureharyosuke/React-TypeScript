@@ -51,7 +51,8 @@ function App() {
             borderGray500
             roundedXL
             grid
-            gridTemplateColumns-2
+            gridTemplateColumns-2--md
+            gridTemplateColumns-1--sm
             gap-10
           >
             <Box
@@ -59,7 +60,25 @@ function App() {
               src={`/pokemon/${pokemon.name.english.toLowerCase()}.jpg`}
               w="100%"
             />
-            <Box textLG>{pokemon.name.english}</Box>
+            <Box>
+              <Box textLG fontBold>
+                {pokemon.name.english}
+              </Box>
+              <Box textLG fontBold>
+                {pokemon.name.japanese}
+              </Box>
+              <Box textSM mt-10>
+                {pokemon.type.join(", ")}
+              </Box>
+              <Box grid gridTemplateColumns-2 gap-10>
+                {Object.keys(pokemon.base).map((k) => (
+                  <React.Fragment>
+                    <Box>{k}</Box>
+                    <Box>{pokemon.base[k]}</Box>
+                  </React.Fragment>
+                ))}
+              </Box>
+            </Box>
           </Box>
         ))}
       </Box>
