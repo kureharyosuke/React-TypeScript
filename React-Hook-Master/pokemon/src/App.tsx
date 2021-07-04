@@ -13,10 +13,16 @@ function App() {
   useEffect(() => {
     console.log("Pokemon changed");
   }, [pokemon]);
+  // 1. useEffect로 리랜더링 확인 [버튼을 클릭할때마다, 리랜더링됨 ex) 24 App.tsx:14 Pokemon changed
+  /**
+   * @param usePokemon에 const lcFilter, const pokemon을 useMemo를 감싸서, 변경되는 값, filter allPokemon(data)를 정의하니까, *버튼을 클릭할때마다, 리랜더링 안됨
+   */
+  // 2. usePokemon에 const lcFilter, const pokemon을 useMemo를 감싸서, 변경되는 값, filter allPokemon(data)를 정의하니까, *버튼을 클릭할때마다, 리랜더링 안됨
 
   return (
     <Box p-10 maxW-1200 m="auto">
       <button onClick={() => setCount(count + 1)}>Bump Count - {count}</button>
+      {/* 1. useEffect로 리랜더링 확인  */}
       <h1>Hello Pokemon</h1>
       <Input
         p-5

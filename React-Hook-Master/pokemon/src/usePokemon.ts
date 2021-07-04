@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface Pokemon {
   id: number;
@@ -24,11 +24,15 @@ export default function usePokemon(): {
       .then((pokemon: Pokemon[]) => setAllPokemon(pokemon)); // setAllPokemon(pokemon) 파라미터를 감싸주고,
   }, []);
 
-  // 검색바(Search Bar) filter로 english 이름만 필터하고,
-  const lcFilter = filter.toLowerCase();
-  const pokemon = allPokemon
-    .filter(({ name: { english } }) => english.toLowerCase().includes(lcFilter))
-    .slice(0, 10); // 검색수를 0번에서 10번까지
+  const pokemon = useMemo(() => {
+    // 검색바(Search Bar) filter로 english 이름만
+    const lcFilter = filter.toLowerCase();
+    return allPokemon
+      .filter(({ name: { english } }) =>
+        english.toLowerCase().includes(lcFilter)
+      )
+      .slice(0, 10); // 검색수를 0번에서 10번까지
+  }, [filter, allPokemon]);
 
   return {
     pokemon,
