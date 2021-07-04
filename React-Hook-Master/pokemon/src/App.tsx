@@ -21,12 +21,14 @@ function App() {
   useEffect(() => {
     fetch("/pokemon.json")
       .then((resp) => resp.json())
-      .then((pokemon: Pokemon[]) => setAllPokemon(pokemon));
+      .then((pokemon: Pokemon[]) => setAllPokemon(pokemon)); // setAllPokemon(pokemon) 파라미터를 감싸주고,
   }, []);
 
-  const pokemon = allPokemon.filter(({ name: { english } }) =>
-    english.toLowerCase().includes(filter)
-  );
+  // 검색바(Search Bar) filter로 english 이름만 필터하고,
+  const lcFilter = filter.toLowerCase();
+  const pokemon = allPokemon
+    .filter(({ name: { english } }) => english.toLowerCase().includes(lcFilter))
+    .slice(0, 10); // 검색수를 0번에서 10번까지
 
   return (
     <Box p-10 maxW-1200 m="auto">
@@ -43,7 +45,14 @@ function App() {
           setFilter(evt.target.value)
         }
       />
-      <h2>{filter}</h2>
+      {/* <h2>{filter}</h2> */}
+      <Box>
+        {pokemon.map((pokemon) => (
+          <Box key={pokemon.id} text3XL>
+            {pokemon.name.english}
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 }
