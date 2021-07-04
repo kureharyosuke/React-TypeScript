@@ -61,20 +61,22 @@ function App() {
               w="100%"
             />
             <Box>
-              <Box textLG fontBold>
+              <Box textXL fontBold>
                 {pokemon.name.english}
               </Box>
-              <Box textLG fontBold>
+              <Box textXL fontBold>
                 {pokemon.name.japanese}
               </Box>
-              <Box textSM mt-10>
+              <Box textLG mt-10>
                 {pokemon.type.join(", ")}
               </Box>
-              <Box grid gridTemplateColumns-2 gap-10>
+              <Box grid gridTemplateColumns-2 gap-10 ml-20 mt-50>
                 {Object.keys(pokemon.base).map((k) => (
-                  <React.Fragment>
-                    <Box>{k}</Box>
-                    <Box>{pokemon.base[k]}</Box>
+                  <React.Fragment key={k}>
+                    <Box textSM fontBold>
+                      {k}
+                    </Box>
+                    <Box textSM>{pokemon.base[k]}</Box>
                   </React.Fragment>
                 ))}
               </Box>
