@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box } from "@fower/react";
 import { styled } from "@fower/styled";
 
@@ -16,7 +16,17 @@ const Input = styled("input");
 
 function App() {
   const [filter, setFilter] = useState<string>("");
-  const [allPokemon, setAllPokemon] = useState<string[]>([]);
+  const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
+
+  useEffect(() => {
+    fetch("/pokemon.json")
+      .then((resp) => resp.json())
+      .then((pokemon: Pokemon[]) => setAllPokemon(pokemon));
+  }, []);
+
+  const pokemon = allPokemon.filter(({ name: { english } }) =>
+    english.toLowerCase().includes(filter)
+  );
 
   return (
     <Box p-10 maxW-1200 m="auto">
