@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { Box } from "@fower/react";
-import { styled } from "@fower/styled";
+import { useState, useEffect } from "react";
 
 interface Pokemon {
   id: number;
@@ -12,9 +10,11 @@ interface Pokemon {
   base: Record<string, number>;
 }
 
-const Input = styled("input");
-
-function App() {
+export default function usePokemon(): {
+  pokemon: Pokemon[];
+  filter: string;
+  setFilter: (filter: string | ((filter: string) => string)) => void;
+} {
   const [filter, setFilter] = useState<string>("");
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
 
@@ -30,31 +30,9 @@ function App() {
     .filter(({ name: { english } }) => english.toLowerCase().includes(lcFilter))
     .slice(0, 10); // 검색수를 0번에서 10번까지
 
-  return (
-    <Box p-10 maxW-1200 m="auto">
-      <h1>Hello Pokemon</h1>
-      <Input
-        p-5
-        text4XL
-        border-1
-        roundedXL
-        borderGray500
-        w="100%"
-        value={filter}
-        onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
-          setFilter(evt.target.value)
-        }
-      />
-      {/* <h2>{filter}</h2> */}
-      <Box>
-        {pokemon.map((pokemon) => (
-          <Box key={pokemon.id} text3XL>
-            {pokemon.name.english}
-          </Box>
-        ))}
-      </Box>
-    </Box>
-  );
+  return {
+    pokemon,
+    filter: filter,
+    setFilter,
+  };
 }
-
-export default App;
