@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 
-interface Pokemon {
+export interface Pokemon {
   id: number;
   name: {
     english: string;
