@@ -3,6 +3,7 @@ import { Box } from "@fower/react";
 import { styled } from "@fower/styled";
 
 import usePokemon from "./usePokemon";
+import PokemonCard from "./PokemonCard";
 
 const Input = styled("input");
 
@@ -43,45 +44,7 @@ function App() {
       {/* <h2>{filter}</h2> */}
       <Box>
         {pokemon.map((pokemon) => (
-          <Box
-            key={pokemon.id}
-            text3XL
-            p-10
-            border-1
-            borderGray500
-            roundedXL
-            grid
-            gridTemplateColumns-2--md
-            gridTemplateColumns-1--sm
-            gap-10
-          >
-            <Box
-              as="img"
-              src={`/pokemon/${pokemon.name.english.toLowerCase()}.jpg`}
-              w="100%"
-            />
-            <Box>
-              <Box textXL fontBold>
-                {pokemon.name.english}
-              </Box>
-              <Box textXL fontBold>
-                {pokemon.name.japanese}
-              </Box>
-              <Box textLG mt-10>
-                {pokemon.type.join(", ")}
-              </Box>
-              <Box grid gridTemplateColumns-2 gap-10 ml-20 mt-50>
-                {Object.keys(pokemon.base).map((k) => (
-                  <React.Fragment key={k}>
-                    <Box textSM fontBold>
-                      {k}
-                    </Box>
-                    <Box textSM>{pokemon.base[k]}</Box>
-                  </React.Fragment>
-                ))}
-              </Box>
-            </Box>
-          </Box>
+          <PokemonCard key={pokemon.id} {...pokemon} />
         ))}
       </Box>
     </Box>
