@@ -1,7 +1,24 @@
 import React from "react";
 import { Box } from "@fower/react";
+import { styled } from "@fower/styled";
 
 import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데, export interface
+
+const Button = styled("button");
+
+//    DefinitelyTyped: @types/react = interface IntrinsicElements
+const PillButton: React.FunctionComponent<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > & {
+    selected: boolean;
+  }
+> = ({ onClick, children, selected }) => (
+  <Button onClick={onClick} p-10 textLG w="80%" white={selected} bgBlue600>
+    {children}
+  </Button>
+);
 
 // const PokemonCard = ({name, type, base}:Pokemon) => ()
 
@@ -10,7 +27,7 @@ const PokemonCard: React.FunctionComponent<
     selected: boolean;
     onSelected: (name: string) => void;
   }
-> = ({ name, type, base }) => (
+> = ({ name, type, base, selected, onSelected }) => (
   <Box
     text3XL
     p-10
@@ -24,11 +41,23 @@ const PokemonCard: React.FunctionComponent<
   >
     <Box as="img" src={`/${name.english.toLowerCase()}.jpg`} w="100%" />
     <Box>
-      <Box textXL fontBold>
-        {name.english} new
-      </Box>
-      <Box textXL fontBold>
-        {name.japanese}
+      <Box grid gridTemplateColumns-2 gap-10>
+        <Box>
+          <Box textXL fontBold>
+            {name.english} new
+          </Box>
+          <Box textXL fontBold>
+            {name.japanese}
+          </Box>
+        </Box>
+        <Box>
+          <PillButton
+            onClick={() => onSelected(name.english)}
+            selected={selected}
+          >
+            {selected ? "Selected" : "Not Selected"}
+          </PillButton>
+        </Box>
       </Box>
       <Box textLG mt-10>
         {type.join(", ")}
