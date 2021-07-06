@@ -9,7 +9,7 @@ const Input = styled("input");
 
 function App() {
   // const [count, setCount] = useState(1);
-  const { filter, setFilter, pokemon } = usePokemon();
+  const { filter, setFilter, pokemon, selectPokemon, selected } = usePokemon();
 
   // useEffect(() => {
   //   console.log("setFilter changed");
@@ -44,7 +44,12 @@ function App() {
       {/* <h2>{filter}</h2> */}
       <Box>
         {pokemon.map((pokemon) => (
-          <PokemonCard key={pokemon.id} {...pokemon} />
+          <PokemonCard
+            key={pokemon.id}
+            {...pokemon}
+            selected={selected.has(pokemon.name.english)}
+            onSelected={selectPokemon}
+          />
         ))}
       </Box>
     </Box>
@@ -52,3 +57,13 @@ function App() {
 }
 
 export default App;
+
+// 1. customhook 에서 받은 데이터를 pokemon
+
+// 2. import usePokemon 해서 PokemonCard
+
+// 3. PokemonCard에다가 pokemon props 넘겨준다.
+
+// 4. props => selected={selected.has(pokemon.name.english)},  PokemonCard에 타입정의 =>  Pokemon & {  selected: boolean onSelected: (name: string) => void; }
+
+// 5. props =>  onSelected={selectPokemon} PokemonCard에 타입정의 => Pokemon & {  selected: boolean onSelected: (name: string) => void; }
