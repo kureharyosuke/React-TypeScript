@@ -39,6 +39,7 @@ export default function usePokemon(): {
   // Set() 대한 타입을 제너릭 타입으로 정의
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
+  // SelectPokemon 선택한 포켓몬의 함수
   const selectPokemon = useCallback((name: string) => {
     setSelected((currentSet) => {
       const newSet = new Set(currentSet);

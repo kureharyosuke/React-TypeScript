@@ -7,8 +7,12 @@ import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데,
 
 const Button = styled("button");
 
-addAtom("grid-30-70", {
+addAtom("grid-30-30", {
   gridTemplateColumns: "30% 70%",
+});
+
+addAtom("grid-70-30", {
+  gridTemplateColumns: "70% 30%",
 });
 
 //    DefinitelyTyped: @types/react = interface IntrinsicElements
@@ -43,7 +47,7 @@ const PokemonCard: React.FunctionComponent<
     onSelected: (name: string) => void;
   }
 > = ({ name, type, base, selected, onSelected }) => (
-  <Box text3XL p-10 border-1 borderGray500 roundedXL grid gap-10>
+  <Box text3XL p-10 border-1 borderGray500 roundedXL grid gap-10 grid-30-70>
     <Box as="img" src={`/pokemon/${name.english.toLowerCase()}.jpg`} w="100%" />
     <Box>
       <Box grid gridTemplateColumns-2 gap-10>
@@ -60,7 +64,7 @@ const PokemonCard: React.FunctionComponent<
             onClick={() => onSelected(name.english)}
             selected={selected}
           >
-            Selected
+            Select
           </PillButton>
         </Box>
       </Box>
