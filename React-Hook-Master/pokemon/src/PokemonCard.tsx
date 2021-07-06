@@ -1,7 +1,24 @@
 import React from "react";
 import { Box } from "@fower/react";
+import { styled } from "@fower/styled";
 
 import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데, export interface
+
+const Button = styled("button");
+
+//    DefinitelyTyped: @types/react = interface IntrinsicElements
+const PillButton: React.FunctionComponent<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > & {
+    selected: boolean;
+  }
+> = ({ onClick, children, selected }) => (
+  <Button onClick={onClick} p-10 textLG w="80%" white={selected} bgBlue600>
+    {children}
+  </Button>
+);
 
 // const PokemonCard = ({name, type, base}:Pokemon) => ()
 
@@ -34,9 +51,12 @@ const PokemonCard: React.FunctionComponent<
           </Box>
         </Box>
         <Box>
-          <button onClick={() => onSelected(name.english)}>
+          <PillButton
+            onClick={() => onSelected(name.english)}
+            selected={selected}
+          >
             {selected ? "Selected" : "Not Selected"}
-          </button>
+          </PillButton>
         </Box>
       </Box>
       <Box textLG mt-10>
