@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 export interface Pokemon {
   id: number;
@@ -14,6 +14,7 @@ export default function usePokemon(): {
   pokemon: Pokemon[];
   filter: string;
   setFilter: (filter: string | ((filter: string) => string)) => void;
+  selected: Set<string>;
 } {
   const [filter, setFilter] = useState<string>("");
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
@@ -34,9 +35,12 @@ export default function usePokemon(): {
       .slice(0, 10); // 검색수를 0번에서 10번까지
   }, [filter, allPokemon]);
 
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
   return {
     pokemon,
     filter: filter,
     setFilter,
+    selected,
   };
 }
