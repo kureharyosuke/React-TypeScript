@@ -10,7 +10,7 @@ const PokemonCard: React.FunctionComponent<
     selected: boolean;
     onSelected: (name: string) => void;
   }
-> = ({ name, type, base }) => (
+> = ({ name, type, base, selected, onSelected }) => (
   <Box
     text3XL
     p-10
@@ -24,11 +24,20 @@ const PokemonCard: React.FunctionComponent<
   >
     <Box as="img" src={`/${name.english.toLowerCase()}.jpg`} w="100%" />
     <Box>
-      <Box textXL fontBold>
-        {name.english} new
-      </Box>
-      <Box textXL fontBold>
-        {name.japanese}
+      <Box grid gridTemplateColumns-2 gap-10>
+        <Box>
+          <Box textXL fontBold>
+            {name.english} new
+          </Box>
+          <Box textXL fontBold>
+            {name.japanese}
+          </Box>
+        </Box>
+        <Box>
+          <button onClick={() => onSelected(name.english)}>
+            {selected ? "Selected" : "Not Selected"}
+          </button>
+        </Box>
       </Box>
       <Box textLG mt-10>
         {type.join(", ")}
