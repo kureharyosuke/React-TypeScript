@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 export interface Pokemon {
   id: number;
@@ -14,6 +14,8 @@ export default function usePokemon(): {
   pokemon: Pokemon[];
   filter: string;
   setFilter: (filter: string | ((filter: string) => string)) => void;
+  selected: Set<string>;
+  selectPokemon: (name: string) => void;
 } {
   const [filter, setFilter] = useState<string>("");
   const [allPokemon, setAllPokemon] = useState<Pokemon[]>([]);
@@ -34,9 +36,26 @@ export default function usePokemon(): {
       .slice(0, 10); // 검색수를 0번에서 10번까지
   }, [filter, allPokemon]);
 
+  // Set() 대한 타입을 제너릭 타입으로 정의
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  const selectPokemon = useCallback((name: string) => {
+    setSelected((currentSet) => {
+      const newSet = new Set(currentSet);
+      if (currentSet.has(name)) {
+        newSet.delete(name);
+      } else {
+        newSet.add(name);
+      }
+      return newSet;
+    });
+  }, []);
+
   return {
     pokemon,
     filter: filter,
     setFilter,
+    selected,
+    selectPokemon,
   };
 }

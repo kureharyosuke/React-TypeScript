@@ -5,11 +5,12 @@ import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데,
 
 // const PokemonCard = ({name, type, base}:Pokemon) => ()
 
-const PokemonCard: React.FunctionComponent<Pokemon> = ({
-  name,
-  type,
-  base,
-}) => (
+const PokemonCard: React.FunctionComponent<
+  Pokemon & {
+    selected: boolean;
+    onSelected: (name: string) => void;
+  }
+> = ({ name, type, base }) => (
   <Box
     text3XL
     p-10
