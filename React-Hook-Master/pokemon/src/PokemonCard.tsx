@@ -1,10 +1,15 @@
 import React from "react";
 import { Box } from "@fower/react";
 import { styled } from "@fower/styled";
+import { addAtom } from "@fower/core";
 
 import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데, export interface
 
 const Button = styled("button");
+
+addAtom("grid-30-70", {
+  gridTemplateColumns: "30% 70%",
+});
 
 //    DefinitelyTyped: @types/react = interface IntrinsicElements
 const PillButton: React.FunctionComponent<
@@ -38,16 +43,7 @@ const PokemonCard: React.FunctionComponent<
     onSelected: (name: string) => void;
   }
 > = ({ name, type, base, selected, onSelected }) => (
-  <Box
-    text3XL
-    p-10
-    border-1
-    borderGray500
-    roundedXL
-    grid
-    gap-10
-    style={{ gridTemplateColumns: "30% 70%" }}
-  >
+  <Box text3XL p-10 border-1 borderGray500 roundedXL grid gap-10>
     <Box as="img" src={`/pokemon/${name.english.toLowerCase()}.jpg`} w="100%" />
     <Box>
       <Box grid gridTemplateColumns-2 gap-10>
