@@ -7,10 +7,9 @@ import { Pokemon } from "./usePokemon"; // interface type 가져와야하는데,
 
 const Button = styled("button");
 
-addAtom("grid-30-30", {
+addAtom("grid-30-70", {
   gridTemplateColumns: "30% 70%",
 });
-
 addAtom("grid-70-30", {
   gridTemplateColumns: "70% 30%",
 });
@@ -71,7 +70,7 @@ const PokemonCard: React.FunctionComponent<
       <Box textLG mt-10>
         {type.join(", ")}
       </Box>
-      <Box grid gridTemplateColumns-2 gap-10 ml-20 mt-50>
+      <Box grid gridTemplateColumns-2 gap-10 ml-20 mt-10>
         {Object.keys(base).map((k) => (
           <React.Fragment key={k}>
             <Box textSM fontBold>
