@@ -1,6 +1,6 @@
 import React from "react";
 
-function SideMenu() {
+export const SideMenu = () => {
   return (
     <nav
       id="sidebarMenu"
@@ -18,6 +18,4 @@ function SideMenu() {
       </div>
     </nav>
   );
-}
-
-export default SideMenu;
+};
