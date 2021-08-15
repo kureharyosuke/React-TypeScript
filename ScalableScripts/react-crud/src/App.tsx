@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter, Route, Router } from "react-router-dom";
 import "./App.css";
 import Nav from "./components/Nav";
 import SideMenu from "./components/SideMenu";
@@ -15,10 +16,13 @@ function App() {
       </div>
 
       <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <h2>Section title</h2>
-        <div className="table-responsive">
+        {/* <h2>Section title</h2> */}
+        <BrowserRouter>
+          <Route path="/admin/products" component={Products} />
+        </BrowserRouter>
+        {/* <div className="table-responsive">
           <Products />
-        </div>
+        </div>  */}
       </main>
     </div>
   );
