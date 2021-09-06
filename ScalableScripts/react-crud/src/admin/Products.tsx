@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Wrapper } from "./Wrapper";
 
 export const Products = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    // const getProducts = async () => {};
+
+    // getProducts();
+    (async () => {
+      const response = await fetch("http://localhost:8000/api/products");
+
+      const data = await response.json();
+
+      // console.log(data);
+      setProducts(data);
+    })();
+  }, []);
+
   return (
     <Wrapper>
       <div className="table-responsive">
